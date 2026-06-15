@@ -16,7 +16,7 @@ spring:
             - id: test-service-route
               uri: ${sm://MOCK_SERER}
               predicates:
-                - Path=/get/**
+                - Path=/get/test/**
               filters:
                 - AddRequestHeader=X-Request-Source, Gateway
             - id : user-service-route
