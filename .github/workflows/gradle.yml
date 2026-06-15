@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 env:
-  GCP_PROJECT_ID: "lessonplatform-495307"
+  GCP_PROJECT_ID: ${{vars.GCP_PROJECT_ID}}
   GCP_REGION: "asia-northeast3"
   ARTIFACT_REGISTRY_REPO: "api-gateway-server-repo"
   IMAGE_NAME: "api-gateway-app"
@@ -38,7 +38,7 @@ jobs:
       uses: google-github-actions/auth@v2
       with:
         workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-        service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+        service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
 
     # 4. 도커 이미지 빌드 및 GCP Artifact Registry로 Push
     - name: Configure Docker for GCP
