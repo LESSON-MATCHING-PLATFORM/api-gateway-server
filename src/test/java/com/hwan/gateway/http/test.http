@@ -1,0 +1,10 @@
+### token 발급
+GET localhost:8080/auth/token?userId=hwan&role=USER
+
+> {%
+    client.global.set("auth_token", response.body);
+%}
+
+### api 테스트
+GET localhost:8080/get
+Authorization: Bearer {{auth_token}}

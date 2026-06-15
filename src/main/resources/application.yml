@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-cloud-gateway
+
+  config:
+    import: sm://
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: test-service-route
+              uri: ${sm://MOCK_SERER}
+              predicates:
+                - Path=/get/**
+              filters:
+                - AddRequestHeader=X-Request-Source, Gateway
+            - id : user-service-route
+              uri: ${sm://AUTH_SERVICE_HOST}:8080
+              predicates:
+                - Path=/auth/**
+              filters:
+                - AddRequestHeader=X-Request-Source, Gateway
+
+jwt:
+  secret: ${sm://JWT_SECRET_KEY}
+
+logging:
+  level:
+    org:
+#      springframework:
+#        security: debug
+#        web: debug
+        cloud:
+          gateway: debug
+#    reactor:
+#      netty:
+#        http:
+#          server: debug
+
+
+
