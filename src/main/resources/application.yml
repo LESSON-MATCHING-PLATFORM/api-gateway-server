@@ -12,6 +12,9 @@ spring:
     gateway:
       server:
         webflux:
+          filter:
+            json-to-grpc:
+              enabled: false
           routes:
             - id: test-service-route
               uri: ${sm://MOCK_SERER}
@@ -41,6 +44,3 @@ logging:
 #      netty:
 #        http:
 #          server: debug
-
-
-
