@@ -17,17 +17,18 @@ spring:
               enabled: false
           routes:
             - id: test-service-route
-              uri: ${sm://MOCK_SERER}
+              uri: http://mock-server.local
               predicates:
-                - Path=/get/test/**
+                - Path=/test
               filters:
+                - RewritePath=/test(?<segment>.*), /get${segment}
                 - AddRequestHeader=X-Request-Source, Gateway
-            - id : user-service-route
-              uri: ${sm://AUTH_SERVICE_HOST}:8080
-              predicates:
-                - Path=/auth/**
-              filters:
-                - AddRequestHeader=X-Request-Source, Gateway
+#            - id : user-service-route
+#              uri: ${sm://AUTH_SERVICE_HOST}:8080
+#              predicates:
+#                - Path=/auth/**
+#              filters:
+#                - AddRequestHeader=X-Request-Source, Gateway
 
 jwt:
   secret: ${sm://JWT_SECRET_KEY}

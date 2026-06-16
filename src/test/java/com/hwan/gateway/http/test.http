@@ -6,5 +6,5 @@ GET localhost:8080/auth/token?userId=hwan&role=USER
 %}
 
 ### api 테스트
-GET localhost:8080/get
+GET localhost:8080/test
 Authorization: Bearer {{auth_token}}
