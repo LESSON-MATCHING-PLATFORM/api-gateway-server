@@ -52,5 +52,5 @@ jobs:
     # 5. CP VM의 컨테이너 이미지 업데이트 및 재시작 명령
     - name: Deploy to GCP Compute Engine
       run: |
-        gcloud compute instances reset spring-app-vm --zone=asia-northeast3-a
+        gcloud compute instances reset api-gateway --zone=asia-northeast3-a
     
