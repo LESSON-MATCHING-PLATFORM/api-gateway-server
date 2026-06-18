@@ -30,6 +30,18 @@ spring:
 #              filters:
 #                - AddRequestHeader=X-Request-Source, Gateway
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "prometheus,health,info"
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
 jwt:
   secret: ${sm://JWT_SECRET_KEY}
 
