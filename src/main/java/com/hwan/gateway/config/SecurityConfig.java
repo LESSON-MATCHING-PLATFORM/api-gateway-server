@@ -42,7 +42,8 @@ public class SecurityConfig {
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers(
                                 "/auth/**",
-                                "/public/**"
+                                "/public/**",
+                                "/actuator/**"
                         ).permitAll()
 
                         .anyExchange().authenticated()
